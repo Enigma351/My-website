@@ -11,11 +11,11 @@ function Projects() {
     <section id="projects" className={styles.container}>
         <h1 className='sectionTitle'>Projects </h1>
         <div className={styles.projectsContainer}>
-          <ProjectCard src={viberr} link='https://github.com/Enigma351/My-website'
+          <ProjectCard src={viberr} link="https://github.com/Ade-mir/company-landing-page-2"
           h3="Viberr"
           p="Streaming App"
           />
-          <ProjectCard src={freshBurger} link='https://github.com/Enigma351/My-website'
+          <ProjectCard src={freshBurger} link="https://github.com/Ade-mir/company-landing-page-2"
           h3="Fresh Burger"
           p="Fast Food Restaurant"
           />
