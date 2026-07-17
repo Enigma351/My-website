@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import GooeyNav from './GooeyNav';
 import styles from './NavbarStyles.module.css';
 
 import logoImg from '../assets/logo.svg';
@@ -61,23 +62,11 @@ function Navbar() {
 
         {/* Desktop Nav */}
         <div className={styles.desktopLinks}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${activeSection === link.href.slice(1) ? styles.active : ''}`}
-              onClick={(e) => handleNavClick(e, link.href)}
-            >
-              {link.label}
-              {activeSection === link.href.slice(1) && (
-                <motion.span
-                  className={styles.activeIndicator}
-                  layoutId="activeNav"
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-            </a>
-          ))}
+          <GooeyNav 
+            items={navLinks} 
+            activeIndex={Math.max(0, navLinks.findIndex(l => l.href.slice(1) === activeSection))}
+            onNavClick={handleNavClick}
+          />
         </div>
 
 

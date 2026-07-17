@@ -71,13 +71,7 @@
   z-index: 1;
 }
 
-.greeting {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
+
 
 .name {
   font-size: clamp(2.5rem, 7vw, 4rem);
@@ -92,15 +86,7 @@
   color: var(--text-secondary);
 }
 
-.rotatingTextMain {
-  overflow: hidden;
-  justify-content: center;
-}
 
-.rotatingTextSplit {
-  overflow: hidden;
-  padding-bottom: 4px;
-}
 
 .description {
   font-size: 0.95rem;
@@ -139,22 +125,7 @@
   transform: translateY(-1px);
 }
 
-/* Socials */
-.socialLinks {
-  display: flex;
-  gap: 16px;
-  margin-top: 8px;
-}
 
-.socialLinks a {
-  color: var(--text-muted);
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.socialLinks a:hover {
-  color: var(--accent-purple);
-  transform: translateY(-2px);
-}
 
 /* Responsive */
 @media (max-width: 480px) {
