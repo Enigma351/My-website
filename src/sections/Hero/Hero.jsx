@@ -1,64 +1,175 @@
-import heroImg from '../../assets/hero-img.png'
-import styles from './HeroStyles.module.css'
-import sun from '../../assets/sun.svg'
-import moon from '../../assets/moon.svg'
-import twitterLight from '../../assets/twitter-light.svg'
-import twitterDark from '../../assets/twitter-dark.svg'
-import githubLight from '../../assets/github-light.svg'
-import githubDark from '../../assets/github-dark.svg'
-import linkedinLight from '../../assets/linkedin-light.svg'
-import linkedinDark from '../../assets/linkedin-dark.svg'
-import CV from '../../assets/cv.pdf'
-import { useTheme } from '../../common/ThemeContext'
+import { motion } from 'framer-motion';
+import heroImg from '../../assets/profile.jpg';
+import styles from './HeroStyles.module.css';
+import CV from '../../assets/cv.pdf';
+import MagicRings from '../../common/MagicRings';
+import GlassIcons from '../../common/GlassIcons';
+import GlitchText from '../../common/GlitchText';
+import SpecularButton from '../../common/SpecularButton';
+import GradientText from '../../common/GradientText';
+
+const socialItems = [
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <text x="2" y="18" fontFamily="Helvetica, Arial, sans-serif" fontWeight="900" fontStyle="italic" fontSize="20" letterSpacing="-1">fi</text>
+        <circle cx="16" cy="7" r="2.5" fill="#1dbf73" />
+      </svg>
+    ),
+    color: 'green',
+    label: 'Fiverr',
+    href: 'https://www.fiverr.com/parthasen786'
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+    ),
+    color: 'purple',
+    label: 'GitHub',
+    href: 'https://github.com/Enigma351'
+  },
+  {
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+    ),
+    color: 'blue',
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/partha-sen-1793822b0/'
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+  }
+};
 
 function Hero() {
-  const { theme, toggleTheme } = useTheme()
-  const themeIcon = theme ==='light' ? sun : moon;
-  const twitterIcon = theme ==='light' ? twitterLight : twitterDark;
-  const githubIcon = theme ==='light' ? githubLight : githubDark;
-  const linkedinIcon = theme ==='light' ? linkedinLight : linkedinDark;
+  return (
+    <section id="hero" className={styles.container}>
+      <div className={styles.auroraWrapper}>
+        <MagicRings
+          color="#7c3aed"
+          colorTwo="#06b6d4"
+          ringCount={6}
+          speed={1.5}
+          attenuation={10}
+          lineThickness={2.5}
+          baseRadius={0.3}
+          radiusStep={0.12}
+          scaleRate={0.1}
+          opacity={0.8}
+          blur={0}
+          noiseAmount={0.05}
+          rotation={0}
+          ringGap={1.5}
+          fadeIn={0.7}
+          fadeOut={0.5}
+          followMouse={true}
+          mouseInfluence={0.3}
+          hoverScale={1.2}
+          parallax={0.1}
+          clickBurst={true}
+        />
+      </div>
+      <motion.div
+        className={styles.content}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className={styles.avatarWrapper}>
+          <div className={styles.glowOrb} />
+          <motion.img
+            className={styles.avatar}
+            src={heroImg}
+            alt="Profile Picture of Partha Sen"
+            variants={itemVariants}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+          />
+        </div>
 
 
-  return <section id="hero" className={styles.container}>
- <div className={styles.colorModeContainer}>
-  <img className={styles.hero} 
-  src={heroImg} 
-  alt="Profile Picture of Partha Sen"
-  />
-  <img
-  className={styles.colorMode} 
-  src={themeIcon} alt="color mode icon"
-  onClick={toggleTheme}
-  />
-  </div>
-  <div className={styles.info}>
-    <h1>
-      Partha 
-      <br/>
-      Sen
-    </h1>
-    <h2>Frontend/Backend Developer</h2>
-    <span>
-      <a href="https://x.com/EnigmaCodes15" target="_blank">
-      <img src={twitterIcon} alt='Twitter Icon'/>
-      </a>
-      <a href="https://github.com/Enigma351" target="_blank">
-      <img src={githubIcon} alt='Github Icon'/>
-      </a>
-      <a href="https://www.linkedin.com/in/partha-sen-1793822b0/" target="_blank">
-      <img src={linkedinIcon} alt='Linkedin Icon'/>
-      </a>
-      </span>
-      <p className={styles.description}>Passionate about developing modern web experiences with JavaScript, CSS, and React.</p>
-      <a href={CV} download>
-        <button className='hover' >
-          Resume
-        </button>
-      </a>
-  </div>
-  </section>
-  
-  
+        <motion.h1 className={styles.name} variants={itemVariants}>
+          <GradientText
+            colors={["#7c3aed", "#06b6d4", "#7c3aed", "#06b6d4", "#7c3aed"]}
+            animationSpeed={3}
+            showBorder={false}
+          >
+            Partha Sen
+          </GradientText>
+        </motion.h1>
+
+        <motion.div className={styles.role} variants={itemVariants}>
+          <GlitchText
+            speed={1}
+            enableShadows={true}
+            enableOnHover={true}
+          >
+            Full-Stack Web Developer
+          </GlitchText>
+        </motion.div>
+
+        <motion.p className={styles.description} variants={itemVariants}>
+          Friction is a choice. Every slow load, broken state, and confusing interaction was permitted to exist. Writing software is the active refusal to tolerate that friction, replacing it with quiet, relentless reliability.
+        </motion.p>
+
+        <motion.div className={styles.actions} variants={itemVariants}>
+          <SpecularButton
+            href={CV}
+            download
+            className={styles.primaryBtn}
+            size="lg"
+            radius={10}
+            tint="#7c3aed"
+            tintOpacity={0.2}
+            textColor="#ffffff"
+            lineColor="#06b6d4"
+            baseColor="#7c3aed"
+            intensity={1.2}
+          >
+            Resume
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </SpecularButton>
+          <SpecularButton
+            href="#contact"
+            className={styles.secondaryBtn}
+            onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+            size="lg"
+            radius={10}
+            tint="transparent"
+            tintOpacity={0}
+            textColor="var(--text-primary)"
+            lineColor="#7c3aed"
+            baseColor="var(--bg-glass-border)"
+            intensity={1}
+          >
+            Get in Touch
+          </SpecularButton>
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <GlassIcons items={socialItems} />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
 }
 
-export default Hero
+export default Hero;

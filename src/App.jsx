@@ -1,22 +1,22 @@
+import './App.css';
+import Navbar from './common/Navbar';
+import Hero from './sections/Hero/Hero';
+import Projects from './sections/Projects/Projects';
+import Skills from './sections/Skills/Skills';
+import Contact from './sections/Contact/Contact';
+import Footer from './sections/Footer/Footer';
 
-import './App.css'
-import Contact from './sections/Contact/Contact'
-import Hero from './sections/Hero/Hero'
-import Projects from './sections/Projects/Projects' 
-import Skills from './sections/Skills/Skills'
-import Footer from './sections/Footer/Footer'
 function App() {
-  
-
   return (
     <>
-    <Hero/>
-    <Projects />
-    <Skills/>
-    <Contact/>
-    <Footer/>
+      <Navbar />
+      <Hero />
+      <Projects />
+      <Skills />
+      <Contact />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
