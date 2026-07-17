@@ -118,7 +118,7 @@ function Hero() {
             enableShadows={true}
             enableOnHover={true}
           >
-            Full-Stack Web Developer
+            Frontend/Full-Stack Web Developer
           </GlitchText>
         </motion.div>
 
