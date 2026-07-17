@@ -4,8 +4,6 @@ import styles from './ContactStyles.module.css';
 import SpotlightCard from '../../common/SpotlightCard';
 import SpecularButton from '../../common/SpecularButton';
 
-// To receive emails, create a free form at https://formspree.io/ and paste your Form ID here:
-const FORMSPREE_FORM_ID = ''; 
 
 function Contact() {
   const [focused, setFocused] = useState({});
@@ -34,30 +32,25 @@ function Contact() {
     setStatus('submitting');
 
     try {
-      if (FORMSPREE_FORM_ID) {
-        const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: sanitizedName,
-            email: sanitizedEmail,
-            message: sanitizedMessage
-          })
-        });
+      const response = await fetch(`https://formspree.io/f/xvzeklwa`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: sanitizedName,
+          email: sanitizedEmail,
+          message: sanitizedMessage
+        })
+      });
 
-        if (response.ok) {
-          setStatus('success');
-          setValues({ name: '', email: '', message: '' });
-          setFocused({});
-        } else {
-          setStatus('error');
-        }
-      } else {
-        // Fallback simulated success if no Formspree ID is set yet
-        await new Promise(resolve => setTimeout(resolve, 1200));
+      if (response.ok) {
         setStatus('success');
         setValues({ name: '', email: '', message: '' });
         setFocused({});
+      } else {
+        setStatus('error');
       }
     } catch (error) {
       setStatus('error');
@@ -85,9 +78,9 @@ function Contact() {
         style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
       >
         <SpotlightCard className={styles.formWrapper} spotlightColor="rgba(124, 58, 237, 0.2)">
-          <form onSubmit={handleSubmit} className={styles.form}>
+          <form action="https://formspree.io/f/xvzeklwa" method="POST" onSubmit={handleSubmit} className={styles.form}>
           {/* Name */}
-          <div className={`${styles.inputGroup} ${focused.name ? styles.focused : ''}`}>
+          <div className={`${styles.inputGroup} ${focused.name || values.name ? styles.focused : ''}`}>
             <label htmlFor="contact-name" className={styles.label}>Name</label>
             <input
               type="text"
@@ -104,7 +97,7 @@ function Contact() {
           </div>
 
           {/* Email */}
-          <div className={`${styles.inputGroup} ${focused.email ? styles.focused : ''}`}>
+          <div className={`${styles.inputGroup} ${focused.email || values.email ? styles.focused : ''}`}>
             <label htmlFor="contact-email" className={styles.label}>Email</label>
             <input
               type="email"
@@ -121,7 +114,7 @@ function Contact() {
           </div>
 
           {/* Message */}
-          <div className={`${styles.inputGroup} ${styles.textareaGroup} ${focused.message ? styles.focused : ''}`}>
+          <div className={`${styles.inputGroup} ${styles.textareaGroup} ${focused.message || values.message ? styles.focused : ''}`}>
             <label htmlFor="contact-message" className={styles.label}>Message</label>
             <textarea
               id="contact-message"
